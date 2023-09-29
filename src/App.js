@@ -1,13 +1,14 @@
-// App.js
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchJokesSuccess, getJokes } from './actions'; // Import the fetchJokesSuccess and getJokes actions
+import { fetchJokesSuccess, getJokes } from './actions';
+import { useSelector } from 'react-redux';
 
 import './App.css';
 
 function App(props) {
+  const joke = useSelector(state => state.reducer.joke);
+
   const fetchJokes = () => {
-    // Call the getJokes action to trigger the API request
     props.getJokes();
   };
 
@@ -17,13 +18,17 @@ function App(props) {
       <div>
         <button onClick={fetchJokes}>Fetch Joke!</button>
       </div>
+      <div>
+        <h3>Joke of the Day</h3>
+        <p>{joke}</p>
+      </div>
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    jokes: state.jokes,
+    joke: state.reducer.joke
   };
 };
 

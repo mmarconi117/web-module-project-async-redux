@@ -1,17 +1,18 @@
-// actions/index.js
 import axios from 'axios';
+
 export const FETCH_JOKES = 'FETCH_JOKES';
 export const FETCH_JOKES_SUCCESS = 'FETCH_JOKES_SUCCESS';
 
 export const getJokes = () => (dispatch) => {
-  dispatch({ type: FETCH_JOKES });
+  dispatch(fetchJokes()); // Dispatch the fetchJokes action to indicate that the fetch is in progress
+
   console.log('Fetching joke...');
 
   axios
     .get('https://official-joke-api.appspot.com/random_joke')
     .then((res) => {
       console.log(res.data); // Log the data from the Axios response
-      dispatch({ type: FETCH_JOKES_SUCCESS, payload: res.data.data });
+      dispatch(fetchJokesSuccess(res.data)); // Dispatch the fetchJokesSuccess action with the fetched data
     })
     .catch((err) => {
       console.log(err);
@@ -23,6 +24,6 @@ export const fetchJokes = () => {
   return { type: FETCH_JOKES };
 };
 
-export const fetchJokesSuccess = (jokes) => {
-  return { type: FETCH_JOKES_SUCCESS, payload: jokes };
+export const fetchJokesSuccess = (joke) => {
+  return { type: FETCH_JOKES_SUCCESS, payload: joke };
 };
