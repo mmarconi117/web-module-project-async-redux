@@ -20,7 +20,9 @@ const Jokes = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    joke: state.reducer.joke // Replace 'reducerName' with the actual name of your reducer
+    joke: state.reducer,
+    isFetching: state.isFetching,
+    error: state.error // Replace 'reducerName' with the actual name of your reducer
   };
 };
 

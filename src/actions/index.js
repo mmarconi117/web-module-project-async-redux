@@ -3,8 +3,12 @@ import axios from 'axios';
 export const FETCH_JOKES = 'FETCH_JOKES';
 export const FETCH_JOKES_SUCCESS = 'FETCH_JOKES_SUCCESS';
 
-export const getJokes = () => (dispatch) => {
-  dispatch(fetchJokes()); // Dispatch the fetchJokes action to indicate that the fetch is in progress
+export const getJokes =() => {
+  return dispatch=>{
+
+
+
+  // dispatch(fetchJokes()); // Dispatch the fetchJokes action to indicate that the fetch is in progress
 
   console.log('Fetching joke...');
 
@@ -19,11 +23,12 @@ export const getJokes = () => (dispatch) => {
       // Handle the error or dispatch an error action if needed
     });
 };
-
+}
 export const fetchJokes = () => {
   return { type: FETCH_JOKES };
 };
 
 export const fetchJokesSuccess = (joke) => {
+  console.log(joke)
   return { type: FETCH_JOKES_SUCCESS, payload: joke };
 };

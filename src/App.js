@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchJokesSuccess, getJokes } from './actions';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import './App.css';
 
 function App(props) {
-  const joke = useSelector(state => state.reducer.joke);
+  const {joke, isFetching, error, dispatch} = props;
+
+
+//   useEffect(() => {
+//     dispatch(getJokes());
+// }, []);
 
   const fetchJokes = () => {
     props.getJokes();
@@ -20,7 +25,7 @@ function App(props) {
       </div>
       <div>
         <h3>Joke of the Day</h3>
-        <p>{joke}</p>
+        <p>{joke && joke.setup}</p>
       </div>
     </div>
   );
@@ -28,7 +33,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    joke: state.reducer.joke
+    joke: state.combineReducers
   };
 };
 

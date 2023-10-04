@@ -1,13 +1,19 @@
 import { FETCH_JOKES, FETCH_JOKES_SUCCESS } from "../actions";
+import { combineReducers } from 'redux'
 
 const initialState = {
-    jokes: [],
-    error: '',
-    isFetching: false
+    jokes:{
+        url: '',
+        source: '',
+        like: 0
+    },
+    isFetching: false,
+    error: ''
 }
 
- function reducer(state = initialState, action) {
-    // console.log('reducer', action)
+
+ function jokes(state = initialState, action) {
+    console.log('reducer', action.payload)
     switch (action.type) {
         case FETCH_JOKES:
             return {
@@ -27,4 +33,5 @@ const initialState = {
     }
 }
 
-export default reducer;
+// export default reducer;
+export default combineReducers({jokes})
